@@ -998,7 +998,7 @@ def fill_avl(
         avl.insert(data[i])
 
 @njit
-def remove_val(
+def remove_avl(
     tree:   'AVLTree',
     values: np.ndarray
     
@@ -1458,3 +1458,4 @@ class AVLTree:
             h    = _get_height(h, l)
         
         return "AVLTree(size=" + str(self.count) + ", root=" + str(self.root) + ", height=" + str(int(h)) + ")"
+
