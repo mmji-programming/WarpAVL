@@ -79,8 +79,8 @@ def unpack(
     [value[62] | left[30] | right[30] | height[6]].
 
     The `left` field is reconstructed from both integers:
-    - 25 upper bits from `high`
-    - 5 lower bits from `low`
+    - 2 upper bits from `high`
+    - 28 lower bits from `low`
 
     All fields are treated as unsigned 64-bit integers (`np.uint64`).
 
@@ -212,7 +212,7 @@ def _update_left(
     Update the 'left' field (30 bits) across both high and low 64-bit integers.
 
     The 5 lower bits of 'left' are stored in the high bits of `low`,
-    and the remaining 25 higher bits are stored in the low bits of `high`.
+    and the remaining 2 higher bits are stored in the low bits of `high`.
     Only the left bits are modified; all other bits remain unchanged.
 
     :param high: The high 64-bit integer containing part of 'left' and 'value'
@@ -540,8 +540,8 @@ def insert(
     # First node
     if root == 0:
         if free_list_top > 0:
-            free_index = np.uint64(free_list[free_list_top])
             free_list_top -= 1
+            free_index = np.uint64(free_list[free_list_top])
         else:
             free_index = free
             free += 1
@@ -568,8 +568,8 @@ def insert(
 
             if right_node_index == 0:
                 if free_list_top > 0:
-                    free_index = np.uint64(free_list[free_list_top])
                     free_list_top -= 1
+                    free_index = np.uint64(free_list[free_list_top])
                 else:
                     free_index = free
                     free += 1
@@ -588,8 +588,8 @@ def insert(
 
             if left_node_index == 0:
                 if free_list_top > 0:
-                    free_index = np.uint64(free_list[free_list_top])
                     free_list_top -= 1
+                    free_index = np.uint64(free_list[free_list_top])
                 else:
                     free_index = free
                     free += 1
